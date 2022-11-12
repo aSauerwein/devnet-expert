@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><rpc-reply message-id="urn:uuid:4a2919ba-c3a2-4e15-8f33-2e6e7bc12192" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"><data><cli-config-data-block>!
+! Last configuration change at 18:31:58 UTC Sat Nov 12 2022
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname andi-iosv
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name ntslab.loc
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username ibkadmin privilege 15 secret 9 $9$dPQi4j6ewVXV.P$WBGU8iap.LOf4VCfkC8/PcBp1IgBvJqITwozExFNsBQ
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description MGMT
+ ip address 172.24.88.7 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip default-gateway 172.24.88.254
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 172.24.88.254
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco&apos;s      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco&apos;s      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco&apos;s      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+no scheduler allocate
+netconf ssh
+!
+end</cli-config-data-block></data></rpc-reply>
