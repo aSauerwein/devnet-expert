@@ -7,7 +7,7 @@ helm:
   valuesFiles: 
     - values.yaml
   valuesFrom:
-    secretKeyRef:
+  - secretKeyRef:
       name: secret-values
       namespace: telegraf
       key: values.yaml
