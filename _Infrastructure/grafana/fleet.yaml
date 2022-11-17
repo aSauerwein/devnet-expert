@@ -1,0 +1,22 @@
+defaultNamespace: grafana
+helm:
+  chart: grafana
+  repo: https://grafana.github.io/helm-charts
+  releaseName: grafana
+  version: ^6.43.5
+  valuesFiles:
+    - values.yaml
+  values:
+    persistence:
+      enabled: yes
+    ingress:
+      enabled: yes
+      hosts:
+        - grafana.sauerwein.se
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        ingress.kubernetes.io/ssl-redirect: "true"
+      tls:
+        - hosts:
+            - grafana.sauerwein.se
+          secretName: grafana-cert
