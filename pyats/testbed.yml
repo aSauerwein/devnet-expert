@@ -1,0 +1,33 @@
+testbed:
+  credentials:
+    default:
+      username: "%ENV{PYATS_USER}"
+      password: "%ENV{PYATS_PASS}"
+    enable:
+      password: "%ENV{PYATS_ENABLE_PASS}"
+
+devices:
+  ibk-lab-sw05:
+    type: switch
+    platform: cat9k
+    os: iosxe
+    connections:
+      cli:
+        ip: 172.24.80.249
+        protocol: ssh
+  ibk-lab-sw03:
+    type: switch
+    platform: cat9k
+    os: iosxe
+    connections:
+      cli:
+        ip: 172.24.80.251
+        protocol: ssh
+  # ibk-lab-sw99:
+  #   type: switch
+  #   platform: cat9k
+  #   os: iosxe
+  #   connections:
+  #     cli:
+  #       ip: 172.24.80.99
+  #       protocol: ssh
