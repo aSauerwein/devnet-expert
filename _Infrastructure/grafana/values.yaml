@@ -297,7 +297,7 @@ extraContainerVolumes: []
 persistence:
   type: pvc
   enabled: yes
-  storageClassName: longhorn
+  storageClassName: vsphere-csi-sc 
   accessModes:
     - ReadWriteOnce
   size: 10Gi
