@@ -1,0 +1,5 @@
+---
+- name: configure mdt
+  ios_config:
+    backup: yes
+    src: mdt_template.j2

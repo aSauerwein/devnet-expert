@@ -4,6 +4,11 @@
   gather_facts: false
   connection: network_cli
   tasks:
+    - name: Configure NTP-Server
+      ios_ntp:
+        server: "{{item}}"
+        state: present
+      loop: "{{ ntp_server | list }}"
     - name: Configured Interfaces Descritions
       ios_interfaces:
         config:
@@ -33,3 +38,6 @@
     - name: Show Routes
       debug:
         var: show_route
+    - name: Configure MDT
+      ansible.builtin.import_tasks: configure-mdt.yml
+      when: telemetry is defined

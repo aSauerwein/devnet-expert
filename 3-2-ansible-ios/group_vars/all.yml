@@ -1,2 +1,5 @@
 ---
 default_gateway: 172.24.87.254
+ntp_server:
+ - 0.at.pool.ntp.org
+ - 1.at.pool.ntp.org
