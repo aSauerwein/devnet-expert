@@ -23,3 +23,4 @@ telemetry:
    - /oc-if:interfaces/interface/state/counters
    - /interfaces-ios-xe-oper:interfaces/interface
    - /if:interfaces-state
+   - /bgp-ios-xe-oper:bgp-state-data
