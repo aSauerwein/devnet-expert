@@ -1,0 +1,16 @@
+---
+all:
+  children:
+    ios_xe:
+      hosts:
+        asa-cat800v-R1:
+          ansible_host: 172.24.88.114
+        asa-cat800v-R2:
+          ansible_host: 172.24.88.116
+        asa-cat800v-R3:
+          ansible_host: 172.24.88.120
+    bgp_router:
+      hosts:
+        asa-cat800v-R1:
+        asa-cat800v-R2:
+        asa-cat800v-R3:

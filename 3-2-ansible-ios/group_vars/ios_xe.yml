@@ -1,0 +1,4 @@
+---
+ansible_user: ntsadmin
+ansible_password: "{{ lookup('env', 'ANSIBLE_PASSWORD') }}"
+ansible_network_os: ios

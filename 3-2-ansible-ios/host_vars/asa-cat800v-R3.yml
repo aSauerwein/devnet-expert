@@ -1,0 +1,27 @@
+interfaces:
+ -  name: Gi1
+    desc: WAN
+    enabled: yes
+    ip_address: 172.24.87.13/24
+ -  name: Lo0
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.13.1/24
+ -  name: Lo1
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.23.1/24
+  
+bgp:
+  as_num: 64013
+  router_id: 172.24.87.13
+  neighbors:
+    - ip: 172.24.87.12
+      as: 64012
+    - ip: 172.24.87.11
+      as: 64011
+  networks:
+    - prefix: 192.168.13.0
+      masklen: 24
+    - prefix: 192.168.23.0
+      masklen: 24

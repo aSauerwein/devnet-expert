@@ -1,0 +1,35 @@
+---
+- name: Devnet Expert Ansible Playbook
+  hosts: ios_xe
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: Configured Interfaces Descritions
+      ios_interfaces:
+        config:
+        - name: "{{item.name}}"
+          description: "{{item.desc}}"
+          enabled: "{{item.enabled}}"
+      loop: "{{ interfaces | list }}"
+    - name: Configure Interface IP Address
+      ios_l3_interfaces:
+        config:
+        - name: "{{item.name}}"
+          ipv4:
+          - address: "{{item.ip_address}}"
+      loop: "{{ interfaces | list }}"
+    - name: Configure Default Route
+      ios_static_route:
+        prefix: 0.0.0.0
+        mask: 0.0.0.0
+        next_hop: "{{default_gateway}}"
+    - name: Configure BGP
+      ansible.builtin.import_tasks: configure-bgp.yml
+      when: bgp is defined
+    - name: run show version on remote devices
+      ios_command:
+        commands: show ip route
+      register: show_route
+    - name: Show Routes
+      debug:
+        var: show_route
