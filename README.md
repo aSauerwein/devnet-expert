@@ -12,6 +12,12 @@ mkvirtualenv devnet-expert -p python3.9
 pip install -r requirements.txt
 ```
 
+## Candidate Workstation
+username: expert
+password: 1234QWer!
+username: root
+password: 1234QWer!
+
 ## Alway on Sandboxes
 ### ACI Simulator
 Address: https://sandboxapicdc.cisco.com/
