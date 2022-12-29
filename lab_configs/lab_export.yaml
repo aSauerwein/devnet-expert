@@ -1,0 +1,1776 @@
+lab:
+  description: ''
+  notes: ''
+  title: asauerwein-devnet-expert
+  version: 0.1.0
+links:
+  - id: l0
+    n1: n12
+    n2: n1
+    i1: i0
+    i2: i16
+    label: ext-conn-0-port<->iosv-0-GigabitEthernet0/15
+  - id: l1
+    n1: n4
+    n2: n2
+    i1: i26
+    i2: i3
+    label: cat8000v-1-GigabitEthernet26<->iosvl2-0-GigabitEthernet0/2
+  - id: l2
+    n1: n5
+    n2: n2
+    i1: i26
+    i2: i4
+    label: cat8000v-2-GigabitEthernet26<->iosvl2-0-GigabitEthernet0/3
+  - id: l3
+    n1: n7
+    n2: n2
+    i1: i16
+    i2: i5
+    label: iosv-1-GigabitEthernet0/15<->iosvl2-0-GigabitEthernet1/0
+  - id: l4
+    n1: n8
+    n2: n2
+    i1: i16
+    i2: i6
+    label: iosv-2-GigabitEthernet0/15<->iosvl2-0-GigabitEthernet1/1
+  - id: l5
+    n1: n9
+    n2: n2
+    i1: i16
+    i2: i7
+    label: iosv-3-GigabitEthernet0/15<->iosvl2-0-GigabitEthernet1/2
+  - id: l6
+    n1: n6
+    n2: n2
+    i1: i16
+    i2: i8
+    label: iosvl2-1-GigabitEthernet3/3<->iosvl2-0-GigabitEthernet1/3
+  - id: l7
+    n1: n11
+    n2: n2
+    i1: i1
+    i2: i9
+    label: nxos9000-1-mgmt0<->iosvl2-0-GigabitEthernet2/0
+  - id: l8
+    n1: n10
+    n2: n2
+    i1: i1
+    i2: i10
+    label: nxos9000-0-mgmt0<->iosvl2-0-GigabitEthernet2/1
+  - id: l9
+    n1: n3
+    n2: n1
+    i1: i0
+    i2: i2
+    label: cws-0-ens3<->iosv-0-GigabitEthernet0/1
+  - id: l10
+    n1: n2
+    n2: n1
+    i1: i1
+    i2: i1
+    label: dev-mgmt-1-GigabitEthernet0/0<->dev-edge-1-GigabitEthernet0/0
+  - id: l11
+    n1: n2
+    n2: n0
+    i1: i2
+    i2: i26
+    label: dev-mgmt-1-GigabitEthernet0/1<->cat8000v-1-GigabitEthernet26
+nodes:
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-c8kv-1
+      !
+      vrf definition mgmt
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      !
+      interface GigabitEthernet26
+      description MGMT
+      vrf forwarding mgmt
+      ip address 192.168.100.11 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip route vrf mgmt 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n0
+    label: dev-c8kv-1
+    node_definition: cat8000v
+    ram: 4096
+    tags: []
+    x: 203
+    y: 254
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet5
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet6
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet7
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet8
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet9
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet10
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet11
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet12
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet13
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet14
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet15
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet16
+        slot: 15
+        type: physical
+      - id: i17
+        label: GigabitEthernet17
+        slot: 16
+        type: physical
+      - id: i18
+        label: GigabitEthernet18
+        slot: 17
+        type: physical
+      - id: i19
+        label: GigabitEthernet19
+        slot: 18
+        type: physical
+      - id: i20
+        label: GigabitEthernet20
+        slot: 19
+        type: physical
+      - id: i21
+        label: GigabitEthernet21
+        slot: 20
+        type: physical
+      - id: i22
+        label: GigabitEthernet22
+        slot: 21
+        type: physical
+      - id: i23
+        label: GigabitEthernet23
+        slot: 22
+        type: physical
+      - id: i24
+        label: GigabitEthernet24
+        slot: 23
+        type: physical
+      - id: i25
+        label: GigabitEthernet25
+        slot: 24
+        type: physical
+      - id: i26
+        label: GigabitEthernet26
+        slot: 25
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 5100 bytes
+      !
+      ! Last configuration change at 22:58:47 UTC Thu Dec 29 2022
+      !
+      version 15.9
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      !
+      hostname dev-edge-1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      no aaa new-model
+      !
+      !
+      !
+      mmi polling-interval 60
+      no mmi auto-configure
+      no mmi pvc
+      mmi snmp-timeout 180
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip dhcp pool cws
+       network 192.168.1.0 255.255.255.0
+       dns-server 172.24.85.10 172.25.85.10
+       default-router 192.168.1.254
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      multilink bundle-name authenticated
+      !
+      !
+      !
+      !
+      username expert privilege 15 secret 9 $9$NC17khbCd6VbTd$xKcgpuYpa8NJ0f168LaB.n4l5886A/0Na.Z7.7gmzLM
+      !
+      redundancy
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       no ip address
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/0.100
+       encapsulation dot1Q 100
+       ip address 192.168.100.254 255.255.255.0
+       ip nat inside
+       ip virtual-reassembly in
+      !
+      interface GigabitEthernet0/1
+       ip address 192.168.1.254 255.255.255.0
+       ip nat inside
+       ip virtual-reassembly in
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/2
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/3
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/4
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/5
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/6
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/7
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/8
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/9
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/10
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/11
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/12
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/13
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/14
+       no ip address
+       shutdown
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      interface GigabitEthernet0/15
+       description UPLINK-LAB
+       ip address 172.24.88.7 255.255.255.0
+       ip nat outside
+       ip virtual-reassembly in
+       duplex auto
+       speed auto
+       media-type rj45
+      !
+      ip forward-protocol nd
+      !
+      !
+      no ip http server
+      no ip http secure-server
+      ip nat inside source static tcp 192.168.1.1 3389 interface GigabitEthernet0/15 3389
+      ip nat inside source static tcp 192.168.1.1 22 interface GigabitEthernet0/15 22
+      ip nat inside source list dev-nat interface GigabitEthernet0/15 overload
+      ip route 0.0.0.0 0.0.0.0 172.24.88.254
+      !
+      ip access-list extended dev-nat
+       permit ip 192.168.1.0 0.0.0.255 any
+       permit ip 192.168.100.0 0.0.0.255 any
+      !
+      ipv6 ioam timestamp
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^CC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^CC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^CC
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login local
+       transport input telnet ssh
+      line vty 5 15
+       login local
+       transport input telnet ssh
+      !
+      no scheduler allocate
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n1
+    label: dev-edge-1
+    node_definition: iosv
+    ram: 512
+    tags: []
+    x: 205
+    y: 44
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet0/4
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet0/5
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet0/6
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet0/7
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet0/8
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet0/9
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet0/10
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet0/11
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet0/12
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet0/13
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet0/14
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet0/15
+        slot: 15
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3956 bytes
+      !
+      ! Last configuration change at 21:45:25 UTC Thu Dec 29 2022
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname dev-mgmt-1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      username expert privilege 15 secret 5 $1$tPDP$JXkCFApkwXrvCvTZvxXZ3.
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       description UPLINK
+       switchport trunk encapsulation dot1q
+       switchport mode trunk
+       switchport nonegotiate
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       description MGMT
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan100
+       ip address 192.168.100.250 255.255.255.0
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip route 0.0.0.0 0.0.0.0 192.168.100.254
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login local
+       transport input telnet ssh
+      line vty 5 15
+       login local
+       transport input telnet ssh
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n2
+    label: dev-mgmt-1
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 414
+    y: 41
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet1/0
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet1/1
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet1/2
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet1/3
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet2/0
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet2/1
+        slot: 9
+        type: physical
+  - boot_disk_size: 0
+    configuration: ''
+    cpu_limit: 100
+    cpus: 4
+    data_volume: 1
+    hide_links: false
+    id: n3
+    label: dev-cws-1
+    node_definition: cws
+    ram: 8192
+    tags: []
+    x: 207
+    y: -134
+    interfaces:
+      - id: i0
+        label: ens3
+        slot: 0
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-c8kv-3
+      !
+      vrf definition mgmt
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      !
+      interface GigabitEthernet26
+      description MGMT
+      vrf forwarding mgmt
+      ip address 192.168.100.13 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip route vrf mgmt 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n4
+    label: dev-c8kv-3
+    node_definition: cat8000v
+    ram: 4096
+    tags: []
+    x: 447
+    y: 295
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet5
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet6
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet7
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet8
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet9
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet10
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet11
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet12
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet13
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet14
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet15
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet16
+        slot: 15
+        type: physical
+      - id: i17
+        label: GigabitEthernet17
+        slot: 16
+        type: physical
+      - id: i18
+        label: GigabitEthernet18
+        slot: 17
+        type: physical
+      - id: i19
+        label: GigabitEthernet19
+        slot: 18
+        type: physical
+      - id: i20
+        label: GigabitEthernet20
+        slot: 19
+        type: physical
+      - id: i21
+        label: GigabitEthernet21
+        slot: 20
+        type: physical
+      - id: i22
+        label: GigabitEthernet22
+        slot: 21
+        type: physical
+      - id: i23
+        label: GigabitEthernet23
+        slot: 22
+        type: physical
+      - id: i24
+        label: GigabitEthernet24
+        slot: 23
+        type: physical
+      - id: i25
+        label: GigabitEthernet25
+        slot: 24
+        type: physical
+      - id: i26
+        label: GigabitEthernet26
+        slot: 25
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-c8kv-2
+      !
+      vrf definition mgmt
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      !
+      interface GigabitEthernet26
+      description MGMT
+      vrf forwarding mgmt
+      ip address 192.168.100.12 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip route vrf mgmt 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n5
+    label: dev-c8kv-2
+    node_definition: cat8000v
+    ram: 4096
+    tags: []
+    x: 324
+    y: 291
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet5
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet6
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet7
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet8
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet9
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet10
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet11
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet12
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet13
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet14
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet15
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet16
+        slot: 15
+        type: physical
+      - id: i17
+        label: GigabitEthernet17
+        slot: 16
+        type: physical
+      - id: i18
+        label: GigabitEthernet18
+        slot: 17
+        type: physical
+      - id: i19
+        label: GigabitEthernet19
+        slot: 18
+        type: physical
+      - id: i20
+        label: GigabitEthernet20
+        slot: 19
+        type: physical
+      - id: i21
+        label: GigabitEthernet21
+        slot: 20
+        type: physical
+      - id: i22
+        label: GigabitEthernet22
+        slot: 21
+        type: physical
+      - id: i23
+        label: GigabitEthernet23
+        slot: 22
+        type: physical
+      - id: i24
+        label: GigabitEthernet24
+        slot: 23
+        type: physical
+      - id: i25
+        label: GigabitEthernet25
+        slot: 24
+        type: physical
+      - id: i26
+        label: GigabitEthernet26
+        slot: 25
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      Building configuration...
+
+      Current configuration : 3588 bytes
+      !
+      ! Last configuration change at 23:01:27 UTC Thu Dec 29 2022
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
+      hostname dev-iosvl2-1
+      !
+      boot-start-marker
+      boot-end-marker
+      !
+      !
+      no logging console
+      !
+      username expert privilege 15 secret 5 $1$oLfk$DrtOgxj58Ty1SGlCg6eGg1
+      no aaa new-model
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      interface GigabitEthernet0/0
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
+      interface GigabitEthernet1/0
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       negotiation auto
+      !
+      interface GigabitEthernet3/3
+       description uplink
+       switchport access vlan 100
+       switchport mode access
+       negotiation auto
+      !
+      interface Vlan100
+       ip address 192.168.100.31 255.255.255.0
+      !
+      ip forward-protocol nd
+      !
+      ip http server
+      ip http secure-server
+      !
+      ip route 0.0.0.0 0.0.0.0 192.168.100.254
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner incoming ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      banner login ^C
+      IOSv - Cisco Systems Confidential -
+
+      Supplemental End User License Restrictions
+
+      This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+      By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+      ^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
+      line vty 0 4
+       login local
+       transport input telnet ssh
+      line vty 5 15
+       login local
+       transport input telnet ssh
+      !
+      !
+      end
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n6
+    label: dev-iosvl2-1
+    node_definition: iosvl2
+    ram: 768
+    tags: []
+    x: 1024
+    y: 219
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet1/0
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet1/1
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet1/2
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet1/3
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet2/0
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet2/1
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet2/2
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet2/3
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet3/0
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet3/1
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet3/2
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet3/3
+        slot: 15
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-iosv-1
+      !
+      int gi0/15
+      ip address 192.168.100.21 255.255.255.0
+      no shut
+      !
+      ip routing
+      ip route 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n7
+    label: dev-iosv-1
+    node_definition: iosv
+    ram: 512
+    tags: []
+    x: 574
+    y: 305
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet0/4
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet0/5
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet0/6
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet0/7
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet0/8
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet0/9
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet0/10
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet0/11
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet0/12
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet0/13
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet0/14
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet0/15
+        slot: 15
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-iosv-2
+      !
+      int gi0/15
+      ip address 192.168.100.22 255.255.255.0
+      no shut
+      !
+      ip routing
+      ip route 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n8
+    label: dev-iosv-2
+    node_definition: iosv
+    ram: 512
+    tags: []
+    x: 674
+    y: 310
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet0/4
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet0/5
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet0/6
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet0/7
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet0/8
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet0/9
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet0/10
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet0/11
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet0/12
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet0/13
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet0/14
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet0/15
+        slot: 15
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      hostname dev-iosv-3
+      !
+      int gi0/15
+      ip address 192.168.100.23 255.255.255.0
+      no shut
+      !
+      ip routing
+      ip route 0.0.0.0 0.0.0.0 192.168.100.254
+      !
+      username expert privilege 15 secret 1234QWer!
+      !
+      line vty 0 15
+      transport input telnet ssh
+      login local
+      !
+    cpu_limit: 100
+    cpus: 1
+    data_volume: 0
+    hide_links: false
+    id: n9
+    label: dev-iosv-3
+    node_definition: iosv
+    ram: 512
+    tags: []
+    x: 801
+    y: 273
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet0/4
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet0/5
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet0/6
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet0/7
+        slot: 7
+        type: physical
+      - id: i9
+        label: GigabitEthernet0/8
+        slot: 8
+        type: physical
+      - id: i10
+        label: GigabitEthernet0/9
+        slot: 9
+        type: physical
+      - id: i11
+        label: GigabitEthernet0/10
+        slot: 10
+        type: physical
+      - id: i12
+        label: GigabitEthernet0/11
+        slot: 11
+        type: physical
+      - id: i13
+        label: GigabitEthernet0/12
+        slot: 12
+        type: physical
+      - id: i14
+        label: GigabitEthernet0/13
+        slot: 13
+        type: physical
+      - id: i15
+        label: GigabitEthernet0/14
+        slot: 14
+        type: physical
+      - id: i16
+        label: GigabitEthernet0/15
+        slot: 15
+        type: physical
+  - boot_disk_size: 0
+    configuration: |-
+      # workaround for booting to loader> prompt
+      echo 'from cli import cli' > set_boot.py
+      echo 'import json' >> set_boot.py
+      echo 'import os' >> set_boot.py
+      echo 'import time' >> set_boot.py
+      echo 'bootimage = json.loads(cli("show version | json"))["kick_file_name"]' >> set_boot.py
+      echo 'set_boot = cli("conf t ; boot nxos {} ; no event manager applet BOOTCONFIG".format(bootimage))' >> set_boot.py
+      echo 'i = 0' >> set_boot.py
+      echo 'while i < 10:' >> set_boot.py
+      echo '    try:' >> set_boot.py
+      echo '        save_config = cli("copy running-config startup-config")' >> set_boot.py
+      echo '        break' >> set_boot.py
+      echo '    except Exception:' >> set_boot.py
+      echo '        i += 1' >> set_boot.py
+      echo '        time.sleep(1)' >> set_boot.py
+      echo 'os.remove("/bootflash/set_boot.py")' >> set_boot.py
+      event manager applet BOOTCONFIG
+       event syslog pattern "Configured from vty"
+       action 1.0 cli python bootflash:set_boot.py
+      # minimum needed config to login
+      no password strength-check
+      hostname dev-nx9kv-2
+      !
+      username admin role network-admin
+      username admin password cisco role network-admin
+      username expert role network-admin
+      username expert password 1234QWer! role network-admin
+      !
+      interface mgmt0
+      ip address 192.168.100.42 255.255.255.0
+      no shutdown
+      !
+      vrf context management
+      ip route 0.0.0.0 0.0.0.0 mgmt 0 192.168.100.254
+      !
+      feature telnet
+    cpu_limit: 100
+    cpus: 2
+    data_volume: 0
+    hide_links: false
+    id: n10
+    label: dev-nx9kv-2
+    node_definition: nxosv9000
+    ram: 8192
+    tags: []
+    x: 1073
+    y: -51
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: mgmt0
+        slot: 0
+        type: physical
+      - id: i2
+        label: Ethernet1/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: Ethernet1/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: Ethernet1/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: |
+      # workaround for booting to loader> prompt
+      echo 'from cli import cli' > set_boot.py
+      echo 'import json' >> set_boot.py
+      echo 'import os' >> set_boot.py
+      echo 'import time' >> set_boot.py
+      echo 'bootimage = json.loads(cli("show version | json"))["kick_file_name"]' >> set_boot.py
+      echo 'set_boot = cli("conf t ; boot nxos {} ; no event manager applet BOOTCONFIG".format(bootimage))' >> set_boot.py
+      echo 'i = 0' >> set_boot.py
+      echo 'while i < 10:' >> set_boot.py
+      echo '    try:' >> set_boot.py
+      echo '        save_config = cli("copy running-config startup-config")' >> set_boot.py
+      echo '        break' >> set_boot.py
+      echo '    except Exception:' >> set_boot.py
+      echo '        i += 1' >> set_boot.py
+      echo '        time.sleep(1)' >> set_boot.py
+      echo 'os.remove("/bootflash/set_boot.py")' >> set_boot.py
+      event manager applet BOOTCONFIG
+       event syslog pattern "Configured from vty"
+       action 1.0 cli python bootflash:set_boot.py
+      # minimum needed config to login
+      no password strength-check
+      hostname dev-nx9kv-1
+      !
+      username admin role network-admin
+      username admin password cisco role network-admin
+      username expert role network-admin
+      username expert password 1234QWer! role network-admin
+      !
+      interface mgmt0
+      ip address 192.168.100.41 255.255.255.0
+      no shutdown
+      !
+      vrf context management
+      ip route 0.0.0.0 0.0.0.0 mgmt 0 192.168.100.254
+      !
+      feature telnet
+    cpu_limit: 100
+    cpus: 2
+    data_volume: 0
+    hide_links: false
+    id: n11
+    label: dev-nx9kv-1
+    node_definition: nxosv9000
+    ram: 8192
+    tags: []
+    x: 1073
+    y: 46
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: mgmt0
+        slot: 0
+        type: physical
+      - id: i2
+        label: Ethernet1/1
+        slot: 1
+        type: physical
+      - id: i3
+        label: Ethernet1/2
+        slot: 2
+        type: physical
+      - id: i4
+        label: Ethernet1/3
+        slot: 3
+        type: physical
+  - boot_disk_size: 0
+    configuration: bridge0
+    cpu_limit: 100
+    cpus: 0
+    data_volume: 0
+    hide_links: false
+    id: n12
+    label: ext-conn-0
+    node_definition: external_connector
+    ram: 0
+    tags: []
+    x: -49
+    y: 46
+    interfaces:
+      - id: i0
+        label: port
+        slot: 0
+        type: physical

@@ -1,2 +1,0 @@
-! simple l2 switch to connect all mgmt interfaces
-hostname dev-mgmt-1
