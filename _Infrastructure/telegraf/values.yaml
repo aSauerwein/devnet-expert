@@ -29,7 +29,7 @@ volumes:
     secretName: "telegraf.ntslab.loc"
 mountPoints:
 - name: tls-certificate
-  mountPath: /etc/telegraf/
+  mountPath: /etc/telegraf/certs/
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
