@@ -26,7 +26,7 @@ env:
 volumes:
 - name: tls-certificate
   secret:
-    name: "telegraf.ntslab.loc"
+    secretName: "telegraf.ntslab.loc"
 mountPoints:
 - name: tls-certificate
   mountPath: /etc/telegraf/
