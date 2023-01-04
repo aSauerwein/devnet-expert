@@ -23,14 +23,13 @@ env:
 # An older "volumeMounts" key was previously added which will likely
 # NOT WORK as you expect. Please use this newer configuration.
 
-# volumes:
-# - name: telegraf-output-influxdb2
-#   configMap:
-#     name: "telegraf-output-influxdb2"
-# mountPoints:
-# - name: telegraf-output-influxdb2
-#   mountPath: /etc/telegraf/conf.d
-#   subPath: influxdb2.conf
+volumes:
+- name: tls-certificate
+  secret:
+    name: "telegraf.ntslab.loc"
+mountPoints:
+- name: tls-certificate
+  mountPath: /etc/telegraf/
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
