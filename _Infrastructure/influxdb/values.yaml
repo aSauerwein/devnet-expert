@@ -73,7 +73,7 @@ persistence:
   storageClass: vsphere-csi-sc
   annotations:
   accessMode: ReadWriteOnce
-  size: 8Gi
+  size: 50Gi
 
 ## Deploy InfluxDB Enterprise - License required
 ## ref: https://www.influxdata.com/products/influxdb-enterprise/
