@@ -1,0 +1,25 @@
+feature telemetry
+telemetry
+  certificate /bootflash/telegraf.ntslab.loc.crt telegraf.ntslab.loc
+  destination-group 1
+    certificate /bootflash/telegraf.ntslab.loc.crt telegraf.ntslab.loc
+    ip address 172.24.86.142 port 32382 protocol gRPC encoding GPB
+    use-vrf management
+  sensor-group 1
+    path sys/bgp/ depth unbounded
+    path sys/epId-1 depth unbounded
+    path sys/intf depth unbounded
+
+  sensor-group 2
+    data-source NX-API
+    path "show environment power" depth 0   
+    path "show vlan id 2-5 counters" depth 0  
+    path "show processes cpu sort" depth 0
+
+  subscription 1
+    dst-grp 1
+    snsr-grp 1 sample-interval 30000
+
+  subscription 2
+    dst-grp 1  
+    snsr-grp 2 sample-interval 60000
