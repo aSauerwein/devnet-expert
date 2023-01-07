@@ -1,0 +1,28 @@
+all:
+  children:
+    cat8kv:
+      hosts:
+        dev-c8kv-1:
+          ansible_host: 192.168.100.11
+        dev-c8kv-2:
+          ansible_host: 192.168.100.12
+        dev-c8kv-3:
+          ansible_host: 192.168.100.13
+    ios_l3:
+      hosts:
+        dev-iosv-1:
+          ansible_host: 192.168.100.21
+        dev-iosv-2:
+          ansible_host: 192.168.100.23
+        dev-iosv-3:
+          ansible_host: 192.168.100.23
+    ios_l2:
+      hosts:
+        dev-iosvl2-1:
+          ansible_host: 192.168.100.31
+    nx9kv:
+      hosts:
+        dev-nx9kv-1:
+          ansible_host: 192.168.100.41
+        dev-nx9kv-2:
+          ansible_host: 192.168.100.42
