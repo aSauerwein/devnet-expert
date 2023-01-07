@@ -1,0 +1,13 @@
+---
+- name: NXOS Streaming Telemetry
+  hosts: nx9kv
+  gather_facts: false
+  connection: network_cli
+  tasks:
+  - name: "copy certificate to Switch"
+    nxos_file_copy:
+      local_file: "./configs/telegraf.ntslab.loc.crt"
+      remote_file: "telegraf.ntslab.loc.crt"
+  - name: render a Jinja2 template onto an IOS device
+    nxos_config:
+      src: ./configs/telemetry.txt
