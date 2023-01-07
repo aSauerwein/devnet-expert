@@ -4,10 +4,21 @@
   gather_facts: false
   connection: network_cli
   tasks:
+  - name: "enable scp"
+    nxos_config:
+      lines:
+      - "feature scp-server"
   - name: "copy certificate to Switch"
     nxos_file_copy:
       local_file: "./configs/telegraf.ntslab.loc.crt"
       remote_file: "telegraf.ntslab.loc.crt"
-  - name: render a Jinja2 template onto an IOS device
+  - name: "write telemtry config"
     nxos_config:
       src: ./configs/telemetry.txt
+  - name: "show telemetry transport"
+    nxos_command:
+      commands: "show telemetry transport"
+    register: telemetry_transport
+  - debug:
+      msg: "{{telemetry_transport.stdout}}"
+     
