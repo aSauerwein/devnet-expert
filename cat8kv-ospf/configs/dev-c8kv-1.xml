@@ -1,0 +1,86 @@
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <router>
+            <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <ospf>
+                    <process-id>
+                        <id>1</id>
+                        <network>
+                            <ip>10.10.12.0</ip>
+                            <wildcard>255.255.255.0</wildcard>
+                            <area>0</area>
+                        </network>
+                        <network>
+                            <ip>10.10.13.0</ip>
+                            <wildcard>255.255.255.0</wildcard>
+                            <area>0</area>
+                        </network>
+                        <router-id>1.1.1.1</router-id>
+                    </process-id>
+                </ospf>
+            </router-ospf>
+        </router>
+        <interface>
+            <GigabitEthernet>
+                <name>1</name>
+                <switchport>
+                    <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                        <native>
+                            <vlan-config>
+                                <tag>true</tag>
+                            </vlan-config>
+                        </native>
+                    </trunk>
+                </switchport>
+                <ip>
+                    <address>
+                        <primary>
+                            <address>10.0.12.1</address>
+                            <mask>255.255.255.0</mask>
+                        </primary>
+                    </address>
+                    <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                        <ospf>
+                            <process-id>
+                                <id>1</id>
+                                <area>
+                                    <area-id>0</area-id>
+                                </area>
+                            </process-id>
+                        </ospf>
+                    </router-ospf>
+                </ip>
+            </GigabitEthernet>
+            <GigabitEthernet>
+                <name>3</name>
+                <switchport>
+                    <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                        <native>
+                            <vlan-config>
+                                <tag>true</tag>
+                            </vlan-config>
+                        </native>
+                    </trunk>
+                </switchport>
+                <ip>
+                    <address>
+                        <primary>
+                            <address>10.0.13.1</address>
+                            <mask>255.255.255.0</mask>
+                        </primary>
+                    </address>
+                    <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                        <ospf>
+                            <process-id>
+                                <id>1</id>
+                                <area>
+                                    <area-id>0</area-id>
+                                </area>
+                            </process-id>
+                        </ospf>
+                    </router-ospf>
+                </ip>
+            </GigabitEthernet>
+        </interface>
+    </native>
+</config>
