@@ -1,0 +1,83 @@
+
+testbed:
+    name: IOS_Testbed
+    credentials:
+        default:
+            username: expert
+            password: 1234QWer!
+        enable:
+            password: 1234QWer!
+
+devices:
+    dev-c8kv-1:
+        os: iosxe
+        type: cat8kv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.11
+                port: 23
+    dev-c8kv-2:
+        os: iosxe
+        type: cat8kv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.12
+                port: 23
+    dev-c8kv-3:
+        os: iosxe
+        type: cat8kv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.13
+                port: 23
+    dev-iosv-1:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.21
+                port: 23
+    dev-iosv-2:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.22
+                port: 23
+    dev-iosv-3:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.23
+                port: 23
+    dev-iosvl2-1:
+        os: ios
+        type: iosvl2
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.31
+                port: 23
+    dev-nx9kv-1:
+        os: nxos
+        type: nx9kv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.41
+                port: 23
+    dev-nx9kv-2:
+        os: nxos
+        type: nx9kv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.42
+                port: 23
