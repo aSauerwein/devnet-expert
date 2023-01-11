@@ -5,10 +5,10 @@ from rich.console import Console
 from pathlib import Path
 import os
 
-HOST = "172.24.88.7"
-USERNAME = "ibkadmin"
-PASSWORD = os.getenv("NETCONFG_PASSWORD")
-NETCONF_PORT = 22
+HOST = "192.168.100.11"
+USERNAME = "expert"
+PASSWORD = "1234QWer!"
+NETCONF_PORT = 830
 
 # IETF Interface Types
 IETF_INTERFACE_TYPES = {
@@ -29,23 +29,25 @@ def main():
         allow_agent=False,
     )
 
-    get_config(m, to_file=True)
+    #get_config(m, to_file=True)
 
-    print_cap(m, to_file=True)
+    # print_cap(m, to_file=True)
 
-    print_interfaces(m)
+    # print_interfaces(m)
+    
+    configure_ospf(m)
 
     # add loopback interface
-    add_loopback(
-        m,
-        {
-            "name": "Loopback123",
-            "desc": "configured by me",
-            "enabled": "true",
-            "ip_address": "3.3.3.10",
-            "mask": "255.255.255.255",
-        },
-    )
+    #add_loopback(
+    #    m,
+    #    {
+    #        "name": "Loopback123",
+    #        "desc": "configured by me",
+    #        "enabled": "true",
+    #        "ip_address": "3.3.3.10",
+    #        "mask": "255.255.255.255",
+    #    },
+    #)
     m.close_session()
 
 
@@ -73,6 +75,99 @@ def get_config(m: manager.Manager, netconf_filter="", to_file=False):
     if to_file:
         Path("config.txt").write_text(netconf_reply.xml)
 
+def configure_ospf(m: manager.Manager):
+    """
+    """
+    config = """
+    <config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <router>
+            <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                <ospf>
+                    <process-id>
+                        <id>1</id>
+                        <network>
+                            <ip>10.10.12.0</ip>
+                            <wildcard>255.255.255.0</wildcard>
+                            <area>0</area>
+                        </network>
+                        <network>
+                            <ip>10.10.13.0</ip>
+                            <wildcard>255.255.255.0</wildcard>
+                            <area>0</area>
+                        </network>
+                        <router-id>1.1.1.1</router-id>
+                    </process-id>
+                </ospf>
+            </router-ospf>
+        </router>
+        <interface>
+            <GigabitEthernet>
+                <name>1</name>
+                <switchport>
+                    <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                        <native>
+                            <vlan-config>
+                                <tag>true</tag>
+                            </vlan-config>
+                        </native>
+                    </trunk>
+                </switchport>
+                <ip>
+                    <address>
+                        <primary>
+                            <address>10.0.12.1</address>
+                            <mask>255.255.255.0</mask>
+                        </primary>
+                    </address>
+                    <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                        <ospf>
+                            <process-id>
+                                <id>1</id>
+                                <area>
+                                    <area-id>0</area-id>
+                                </area>
+                            </process-id>
+                        </ospf>
+                    </router-ospf>
+                </ip>
+            </GigabitEthernet>
+            <GigabitEthernet>
+                <name>3</name>
+                <switchport>
+                    <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
+                        <native>
+                            <vlan-config>
+                                <tag>true</tag>
+                            </vlan-config>
+                        </native>
+                    </trunk>
+                </switchport>
+                <ip>
+                    <address>
+                        <primary>
+                            <address>10.0.13.1</address>
+                            <mask>255.255.255.0</mask>
+                        </primary>
+                    </address>
+                    <router-ospf xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ospf">
+                        <ospf>
+                            <process-id>
+                                <id>1</id>
+                                <area>
+                                    <area-id>0</area-id>
+                                </area>
+                            </process-id>
+                        </ospf>
+                    </router-ospf>
+                </ip>
+            </GigabitEthernet>
+        </interface>
+    </native>
+    </config>
+
+    """
+    m.edit_config(config, target="running")
 
 def print_interfaces(m: manager.Manager):
     """
