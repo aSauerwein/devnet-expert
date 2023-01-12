@@ -6,28 +6,28 @@
                     <process-id>
                         <id>1</id>
                         <network>
-                            <ip>10.10.12.0</ip>
-                            <wildcard>255.255.255.0</wildcard>
-                            <area>0</area>
-                        </network>
-                        <network>
                             <ip>10.10.13.0</ip>
                             <wildcard>255.255.255.0</wildcard>
                             <area>0</area>
                         </network>
                         <network>
-                            <ip>10.1.0.0</ip>
+                            <ip>10.10.23.0</ip>
                             <wildcard>255.255.255.0</wildcard>
                             <area>0</area>
                         </network>
-                        <router-id>1.1.1.1</router-id>
+                        <network>
+                            <ip>10.3.0.0</ip>
+                            <wildcard>255.255.255.0</wildcard>
+                            <area>0</area>
+                        </network>
+                        <router-id>3.3.3.3</router-id>
                     </process-id>
                 </ospf>
             </router-ospf>
         </router>
         <interface>
             <GigabitEthernet>
-                <name>1</name>
+                <name>2</name>
                 <switchport>
                     <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
                         <native>
@@ -40,7 +40,7 @@
                 <ip>
                     <address>
                         <primary>
-                            <address>10.0.12.1</address>
+                            <address>10.0.23.3</address>
                             <mask>255.255.255.0</mask>
                         </primary>
                     </address>
@@ -70,7 +70,7 @@
                 <ip>
                     <address>
                         <primary>
-                            <address>10.0.13.1</address>
+                            <address>10.0.13.3</address>
                             <mask>255.255.255.0</mask>
                         </primary>
                     </address>
@@ -90,7 +90,7 @@
     </native>
     <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
       <interface>
-        <name>GigabitEthernet1</name>
+        <name>GigabitEthernet2</name>
         <enabled>true</enabled>
       </interface>
       <interface>
@@ -103,7 +103,7 @@
         <enabled>true</enabled>
         <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
           <address>
-            <ip>10.1.0.1</ip>
+            <ip>10.3.0.1</ip>
             <netmask>255.255.255.0</netmask>
           </address>
         </ipv4>

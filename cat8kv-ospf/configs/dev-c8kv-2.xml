@@ -11,16 +11,16 @@
                             <area>0</area>
                         </network>
                         <network>
-                            <ip>10.10.13.0</ip>
+                            <ip>10.10.23.0</ip>
                             <wildcard>255.255.255.0</wildcard>
                             <area>0</area>
                         </network>
                         <network>
-                            <ip>10.1.0.0</ip>
+                            <ip>10.2.0.0</ip>
                             <wildcard>255.255.255.0</wildcard>
                             <area>0</area>
                         </network>
-                        <router-id>1.1.1.1</router-id>
+                        <router-id>2.2.2.2</router-id>
                     </process-id>
                 </ospf>
             </router-ospf>
@@ -40,7 +40,7 @@
                 <ip>
                     <address>
                         <primary>
-                            <address>10.0.12.1</address>
+                            <address>10.0.12.2</address>
                             <mask>255.255.255.0</mask>
                         </primary>
                     </address>
@@ -57,7 +57,7 @@
                 </ip>
             </GigabitEthernet>
             <GigabitEthernet>
-                <name>3</name>
+                <name>2</name>
                 <switchport>
                     <trunk xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-switch">
                         <native>
@@ -70,7 +70,7 @@
                 <ip>
                     <address>
                         <primary>
-                            <address>10.0.13.1</address>
+                            <address>10.0.23.2</address>
                             <mask>255.255.255.0</mask>
                         </primary>
                     </address>
@@ -94,7 +94,7 @@
         <enabled>true</enabled>
       </interface>
       <interface>
-        <name>GigabitEthernet3</name>
+        <name>GigabitEthernet2</name>
         <enabled>true</enabled>
       </interface>
       <interface>
@@ -103,7 +103,7 @@
         <enabled>true</enabled>
         <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
           <address>
-            <ip>10.1.0.1</ip>
+            <ip>10.2.0.1</ip>
             <netmask>255.255.255.0</netmask>
           </address>
         </ipv4>
