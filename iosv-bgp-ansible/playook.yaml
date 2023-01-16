@@ -1,0 +1,12 @@
+---
+- name: Devnet Expert Ansible Playbook
+  hosts: ios_l3, dev-c8kv-1
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: "write interface config"
+      ios_config:
+        src: ./templates/interface.j2
+    - name: "write bgp config"
+      ios_config:
+        src: ./templates/bgp.j2

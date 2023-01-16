@@ -1,0 +1,10 @@
+interfaces:
+ - name: GigabitEthernet0/0
+   ip_address: 10.10.1.2
+   mask: 255.255.255.0
+
+bgp:
+  as: 65002
+  neighbors:
+   - as: 65000
+     ip: 10.10.1.254

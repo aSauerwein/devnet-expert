@@ -1,0 +1,10 @@
+router bgp {{ bgp.as }}
+  {% for network in bgp.get('networks',()) %}
+  network {{network.prefix}} mask {{network.mask}}
+  {% endfor %}
+  {% for neighbor in bgp.neighbors %}
+  neighbor {{neighbor.ip}} remote-as {{ neighbor.as }}
+  {% endfor %}
+  {% for protocol in bgp.get('redistribute',()) %}
+  redistribute {{protocol}}
+  {% endfor %}
