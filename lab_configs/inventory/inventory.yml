@@ -13,7 +13,7 @@ all:
         dev-iosv-1:
           ansible_host: 192.168.100.21
         dev-iosv-2:
-          ansible_host: 192.168.100.23
+          ansible_host: 192.168.100.22
         dev-iosv-3:
           ansible_host: 192.168.100.23
     ios_l2:
