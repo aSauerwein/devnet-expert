@@ -1,0 +1,35 @@
+
+testbed:
+    name: IOS_Testbed
+    credentials:
+        default:
+            username: expert
+            password: 1234QWer!
+        enable:
+            password: 1234QWer!
+
+devices:
+    dev-iosv-1:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.21
+                port: 23
+    dev-iosv-2:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.22
+                port: 23
+    dev-iosv-3:
+        os: ios
+        type: iosv
+        connections:
+            telnet:
+                protocol: telnet
+                ip: 192.168.100.23
+                port: 23

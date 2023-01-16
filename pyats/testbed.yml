@@ -1,33 +1,33 @@
 testbed:
   credentials:
     default:
-      username: "%ENV{PYATS_USER}"
-      password: "%ENV{PYATS_PASS}"
+      username: "%ENV{PYATS_USER}" # expert
+      password: "%ENV{PYATS_PASS}" # 1234QWer!
     enable:
       password: "%ENV{PYATS_ENABLE_PASS}"
 
 devices:
-  ibk-lab-sw05:
+  dev-iosv-1:
     type: switch
     platform: cat9k
-    os: iosxe
+    os: ios
     connections:
       cli:
-        ip: 172.24.80.249
-        protocol: ssh
-  ibk-lab-sw03:
+        ip: 192.168.100.21
+        protocol: telnet
+  dev-iosv-2:
     type: switch
     platform: cat9k
-    os: iosxe
+    os: ios
     connections:
       cli:
-        ip: 172.24.80.251
-        protocol: ssh
-  # ibk-lab-sw99:
-  #   type: switch
-  #   platform: cat9k
-  #   os: iosxe
-  #   connections:
-  #     cli:
-  #       ip: 172.24.80.99
-  #       protocol: ssh
+        ip: 192.168.100.22
+        protocol: telnet
+  dev-iosv-3:
+    type: switch
+    platform: cat9k
+    os: ios
+    connections:
+      cli:
+        ip: 192.168.100.23
+        protocol: telnet

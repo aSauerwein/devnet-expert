@@ -48,5 +48,17 @@ Check if ntp servers are configured
 pyats run job 3.4.c_AEtest/test_job_ntp.py --testbed-file=testbed.yml 
 ```
 
+## Info
+per default a test is stopped when the first step fails.  
+this behavior can be changed by setting continue_=True on the step setup
+```python
+            with steps.start(f"Looking for Interface status on {device_name}", continue_=True)
+```
+list of config values: https://pubhub.devnetcloud.com/media/pyats/docs/configuration/index.html
+
+
+
 ## helpful links
 https://github.com/hpreston/intro-network-tests
+https://github.com/CiscoTestAutomation/examples
+https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/intro/introduction.html
