@@ -70,7 +70,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: vsphere-csi-sc
+  storageClass: ontap-gold
   annotations:
   accessMode: ReadWriteOnce
   size: 50Gi

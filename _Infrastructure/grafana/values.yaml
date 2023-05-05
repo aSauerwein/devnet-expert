@@ -297,7 +297,7 @@ extraContainerVolumes: []
 persistence:
   type: pvc
   enabled: yes
-  storageClassName: vsphere-csi-sc 
+  storageClassName: ontap-gold
   accessModes:
     - ReadWriteOnce
   size: 10Gi
