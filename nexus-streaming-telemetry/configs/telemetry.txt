@@ -1,6 +1,6 @@
 feature telemetry
 telemetry
-  certificate /bootflash/telegraf.ntslab.loc.crt telegraf.k8s.ntslab.loc
+  certificate /bootflash/telegraf.k8s.ntslab.loc.crt telegraf.k8s.ntslab.loc
   destination-group 1
     ip address 172.24.86.142 port 32382 protocol gRPC encoding GPB 
     use-vrf management

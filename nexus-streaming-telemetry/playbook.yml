@@ -10,8 +10,8 @@
       - "feature scp-server"
   - name: "copy certificate to Switch"
     nxos_file_copy:
-      local_file: "./configs/telegraf.ntslab.loc.crt"
-      remote_file: "telegraf.ntslab.loc.crt"
+      local_file: "./configs/telegraf.k8s.ntslab.loc.crt"
+      remote_file: "telegraf.k8s.ntslab.loc.crt"
   - name: "write telemtry config"
     nxos_config:
       src: ./configs/telemetry.txt
