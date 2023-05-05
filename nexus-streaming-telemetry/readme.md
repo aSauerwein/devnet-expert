@@ -40,6 +40,13 @@ telegraf configmap is 'secret' and consists of
   tls_key = "/etc/telegraf/certs/tls.key"
   transport = "grpc"
 ```
+* expose service
+```bash
+$ kubectl expose deployment -n telegraf telegraf --port 57500 --type NodePort
+$ k get svc -n telegraf                                             
+NAME       TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE
+telegraf   NodePort   10.43.236.212   <none>        57500:32611/TCP   5s
+```
 
 
 ### switch config
@@ -61,12 +68,13 @@ telegraf configmap is 'secret' and consists of
     ```
 
 * telemetry config
+remeber to change ip address ad port accordingly to the created service
 ```
 feature telemetry
 telemetry
   certificate /bootflash/telegraf.ntslab.loc.crt telegraf.ntslab.loc
   destination-group 1
-    ip address 172.24.86.142 port 32382 protocol gRPC encoding GPB 
+    ip address 172.24.86.112 port 32611 protocol gRPC encoding GPB 
     use-vrf management
   sensor-group 1
     path sys/intf depth unbounded
@@ -85,7 +93,7 @@ telemetry
 ## configure with ansible
 ```
 cd nexus-streaming-telemetry
-ansible-playbook playbook.yml -i ../lab_configs/inventory/inventory.ym
+ansible-playbook playbook.yml -i ../lab_configs/inventory/inventory.yml
 (ansible) expert@expert-cws:~/devnet-expert/nexus-streaming-telemetry$ ansible-playbook playbook.yml -i ../lab_configs/inventory/inventory.yml 
 /home/expert/venvs/ansible/lib/python3.9/site-packages/paramiko/transport.py:236: CryptographyDeprecationWarning: Blowfish has been deprecated
   "class": algorithms.Blowfish,
