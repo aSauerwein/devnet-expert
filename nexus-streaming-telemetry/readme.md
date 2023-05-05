@@ -137,3 +137,21 @@ https://beye.blog/model-driven-telemetry-with-cisco-nexus/
 ## troubleshooting
 show telemetry transport
 show telemetry data collector details
+
+
+## settings
+supported encodings as of:
+https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/progammability/guide/b-cisco-nexus-9000-series-nx-os-programmability-guide-93x/b-cisco-nexus-9000-series-nx-os-programmability-guide-93x_chapter_0101001.html
+```
+proto — The transport protocol type of the telemetry data to be sent. NX-OS supports:
+    gRPC
+    HTTP
+    VUDP and secure UDP (DTLS)
+Supported encoded types are:
+    HTTP/JSON YES
+    HTTP/Form-data YES Only supported for Bin Logging.
+    GRPC/GPB-Compact YES Native Data Source Only.
+    GRPC/GPB YES
+    UDP/GPB YES
+    UDP/JSON YES
+```
