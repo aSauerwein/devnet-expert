@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: telegraf
+  namespace: telegraf
+spec:
+  secretName: telegraf.ntslab.loc
+  commonName: telegraf.k8s.ntslab.loc
+  dnsNames:
+  - telegraf.k8s.ntslab.loc
+  issuerRef:
+    name: vault-issuer
+    kind: ClusterIssuer
