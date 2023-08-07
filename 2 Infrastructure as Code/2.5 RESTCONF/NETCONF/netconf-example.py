@@ -29,13 +29,13 @@ def main():
         allow_agent=False,
     )
 
-    #get_config(m, to_file=True)
+    # get_config(m, to_file=True)
 
     # print_cap(m, to_file=True)
 
-    # print_interfaces(m)
+    print_interfaces(m)
     
-    configure_ospf(m)
+    # configure_ospf(m)
 
     # add loopback interface
     #add_loopback(
@@ -48,6 +48,7 @@ def main():
     #        "mask": "255.255.255.255",
     #    },
     #)
+    m.create_subscription()
     m.close_session()
 
 
@@ -177,28 +178,30 @@ def print_interfaces(m: manager.Manager):
     <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
     <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
         <interface>
+            <description>Netconf</description>
         </interface>
     </interfaces>
     </filter>"""
     netconf_reply = m.get_config(source="running", filter=netconf_filter)
     # convert reply to dict
     netconf_data = xmltodict.parse(netconf_reply.xml)["rpc-reply"]["data"]
+    if netconf_data is not None:
+        # Prepare output Table
+        table = Table(title="Network Interfaces")
+        table.add_column("Name", no_wrap=True)
+        table.add_column("Description")
+        table.add_column("Enabled")
 
-    # Prepare output Table
-    table = Table(title="Network Interfaces")
-    table.add_column("Name", no_wrap=True)
-    table.add_column("Description")
-    table.add_column("Enabled")
-
-    # Create a list of interfaces
-    for interface in netconf_data["interfaces"]["interface"]:
-        table.add_row(
-            interface["name"], interface.get("description", ""), interface["enabled"]
-        )
-    pass
-    console = Console()
-    console.print(table)
-
+        # Create a list of interfaces
+        for interface in netconf_data["interfaces"]["interface"]:
+            table.add_row(
+                interface["name"], interface.get("description", ""), interface["enabled"]
+            )
+        pass
+        console = Console()
+        console.print(table)
+    else:
+        print("Netconf request returned no Data")
 
 def add_loopback(m: manager.Manager, new_loopback: dict):
     """
