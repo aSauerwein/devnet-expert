@@ -1,0 +1,36 @@
+interfaces:
+ -  name: Gi1
+    desc: R1R2
+    enabled: yes
+    ip_address: 192.168.12.1/29
+ -  name: Gi3
+    desc: R1R3
+    enabled: yes
+    ip_address: 192.168.13.1/29
+ - name: GigabitEthernet5
+   ip_address: 10.10.1.254/24
+ -  name: Lo0
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.1.1/24
+
+bgp:
+  as_num: 64001
+  router_id: 192.168.100.11
+  neighbors:
+    - ip: 192.168.12.2
+      as: 64002
+    - ip: 192.168.13.3
+      as: 64003
+    - as: 65001
+      ip: 10.10.1.1
+    - as: 65002
+      ip: 10.10.1.2
+    - as: 65003
+      ip: 10.10.1.3
+  networks:
+    - prefix: 192.168.0.0
+      masklen: 16
+  redistribute:
+   - connected
+   - static

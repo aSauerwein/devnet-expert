@@ -1,0 +1,25 @@
+interfaces:
+ -  name: Gi1
+    desc: R1R2
+    enabled: yes
+    ip_address: 192.168.12.2/29
+ -  name: Gi3
+    desc: R2R3
+    enabled: yes
+    ip_address: 192.168.23.2/29
+ -  name: Lo0
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.2.1/24
+
+bgp:
+  as_num: 64002
+  router_id: 192.168.100.12
+  neighbors:
+    - ip: 192.168.12.1
+      as: 64001
+    - ip: 192.168.13.3
+      as: 64003
+  networks:
+    - prefix: 192.168.2.0
+      masklen: 24

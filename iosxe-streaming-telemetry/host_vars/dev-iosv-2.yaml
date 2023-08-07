@@ -1,0 +1,11 @@
+interfaces:
+ - name: GigabitEthernet0/0
+   ip_address: 10.10.1.2/24
+
+bgp:
+  as_num: 65002
+  router_id: 192.168.100.22
+  neighbors:
+   - as: 64001
+     ip: 10.10.1.254
+  networks: []

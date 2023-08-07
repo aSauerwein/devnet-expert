@@ -1,0 +1,71 @@
+---
+- name: IOS-XE Streaming Telemetry
+  hosts: cat8kv
+  gather_facts: false
+  connection: network_cli
+  tasks:
+  - name: Configure NTP-Server
+    ios_ntp:
+      server: "{{item}}"
+      state: present
+    loop: "{{ ntp_server | list }}"
+  - name: Configured Interfaces Descritions
+    ios_interfaces:
+      config:
+      - name: "{{item.name}}"
+        description: "{{item.desc | default('')}}"
+        enabled: "{{item.enabled | default(True)}}"
+    loop: "{{ interfaces | list }}"
+  - name: Configure Interface IP Address
+    ios_l3_interfaces:
+      config:
+      - name: "{{item.name}}"
+        ipv4:
+        - address: "{{item.ip_address}}"
+    loop: "{{ interfaces | list }}"
+  - name: Configure BGP
+    ansible.builtin.import_tasks: configure-bgp.yml
+    when: bgp is defined
+  - name: configure trustpoint
+    ios_config:
+      replace: block
+      parents:
+        - "crypto pki trustpoint myca"
+      lines:
+        - "enrollment terminal"
+        - "chain-validation stop"
+        - "revocation-check none"
+  # must be done by hand :( because ios_config does not support multi lines
+  # - name: configure pki authenticate
+  #   ios_config:
+  #     lines:
+  #       - |
+  #         crypto pki authenticate myca
+  #         -----BEGIN CERTIFICATE-----
+  #         MIIDijCCAnKgAwIBAgIQSDcdCbDchZ5F8s5Rb1ruOzANBgkqhkiG9w0BAQsFADBF
+  #         MRMwEQYKCZImiZPyLGQBGRYDbG9jMRYwFAYKCZImiZPyLGQBGRYGTlRTTEFCMRYw
+  #         FAYDVQQDEw1OVFNMQUItUm9vdENBMB4XDTEzMTIyNTEzNDk1N1oXDTQ5MDQxNzE5
+  #         MDYyN1owRTETMBEGCgmSJomT8ixkARkWA2xvYzEWMBQGCgmSJomT8ixkARkWBk5U
+  #         U0xBQjEWMBQGA1UEAxMNTlRTTEFCLVJvb3RDQTCCASIwDQYJKoZIhvcNAQEBBQAD
+  #         ggEPADCCAQoCggEBAOSrLLd8RnwvndD5G4zkjumMv1ltMS/y+ThhE+G97+/dYZsB
+  #         DAwO8+MT+qy8sxg0KmiDrV2uaclQCvGoKIW/TNekyVseC01RqQ/DqyiHg7hPw8w9
+  #         MfAESfdvWZY1jinHtc94rph9948/0+KX5iVya7GM/9qQuOpb71XCzACz/1ikzlAp
+  #         rVkRnu17IkM2s6wLeMl2/Y0QWpmn7MN2NSN4Vt/GiWTcambp44n//VeelpIAf+yr
+  #         QdoRutMMim71Etik8EIZO7FLsVsHIuwOtoURTW2X8m5gyQrUSXn/H1axf0oMudeI
+  #         7ZVjEGUs/KnqBe61H6FvDIbDZcQ6pJqC0KIOjUsCAwEAAaN2MHQwCwYDVR0PBAQD
+  #         AgGGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFIYy9VZEIezjKtlfboeCemfC
+  #         8XfoMBAGCSsGAQQBgjcVAQQDAgEBMCMGCSsGAQQBgjcVAgQWBBR2SWKslpfFgggf
+  #         BmxTcm0CeqgsoTANBgkqhkiG9w0BAQsFAAOCAQEAGM6PPd7krYK7S6ISqGzGpsmf
+  #         JLOO1aDEj70WMMnytcJIf66mbLaU73WQ9LWlZXe5jHpjHFsE289zhHCGwGvOf0a0
+  #         Oubc9LuepRfrsg4ZlfRvogotZMcRXf51qcMKpbws3ql15cbYee/8AcpK+o5GsCMU
+  #         KVzX129vIaE4MLoTwEByq57xLefCsPDNZKjLb5DoPRNYw6+1fEZt1fn6KK1Z4+hc
+  #         m20iNNpzdEV4nZ+teJK8eM7tlBavalWPhiowIOnDx4tnWrpslW4nqUlbqFfnR+af
+  #         tfYWV3ANXN/Hva5DAsTTDZ9Sjd+7pZixe4m1QE64vPo2zFaYfNS1yFg4ABvEIA==
+  #         -----END CERTIFICATE-----
+  #         quit
+  #         yes
+  - name: configure mdt
+    ios_config:
+      backup: yes
+      src: mdt_template.j2
+     

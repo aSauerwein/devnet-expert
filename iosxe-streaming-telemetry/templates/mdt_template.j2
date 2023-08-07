@@ -1,0 +1,11 @@
+{% for path in telemetry.paths %}
+# Temperature
+telemetry ietf subscription {{ 3300 + loop.index }}
+ encoding encode-kvgpb
+ filter xpath {{ path }} 
+ source-address {{ ansible_host }}
+ source-vrf mgmt
+ stream yang-push
+ update-policy periodic 3000
+ receiver ip address 172.24.86.112 31335 protocol grpc-tcp
+{% endfor %}

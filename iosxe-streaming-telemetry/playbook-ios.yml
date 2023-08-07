@@ -1,0 +1,29 @@
+# configure more bgp peers on ios devices
+---
+- name: IOS-XE Streaming Telemetry
+  hosts: ios_l3
+  gather_facts: false
+  connection: network_cli
+  tasks:
+  - name: Configure NTP-Server
+    ios_ntp:
+      server: "{{item}}"
+      state: present
+    loop: "{{ ntp_server | list }}"
+  - name: Configured Interfaces Descritions
+    ios_interfaces:
+      config:
+      - name: "{{item.name}}"
+        description: "{{item.desc | default('')}}"
+        enabled: "{{item.enabled | default(True)}}"
+    loop: "{{ interfaces | list }}"
+  - name: Configure Interface IP Address
+    ios_l3_interfaces:
+      config:
+      - name: "{{item.name}}"
+        ipv4:
+        - address: "{{item.ip_address}}"
+    loop: "{{ interfaces | list }}"
+  - name: Configure BGP
+    ansible.builtin.import_tasks: configure-bgp.yml
+    when: bgp is defined

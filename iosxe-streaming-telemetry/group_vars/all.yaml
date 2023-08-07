@@ -1,0 +1,3 @@
+ntp_server:
+ - 0.at.pool.ntp.org
+ - 1.at.pool.ntp.org

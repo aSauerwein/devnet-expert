@@ -1,0 +1,21 @@
+telemetry:
+  destination: 172.24.86.112
+  port: 32611
+  protocol: grpc-tcp
+  paths:
+   - /oc-platform:components/component/state/temperature
+   - /oc-platform:components/component/fan/state
+   - /oc-sys:system/state
+   - /oc-platform:components/component/power-supply/state
+   - /process-cpu-ios-xe-oper:cpu-usage/cpu-utilization
+   - /matm-ios-xe-oper:matm-oper-data
+   - /memory-ios-xe-oper:memory-statistics/memory-statistic
+   - /poe-ios-xe-oper:poe-oper-data
+   - /ios:native
+   - /mdt-oper:mdt-oper-data/mdt-subscriptions
+   - /cdp-ios-xe-oper:cdp-neighbor-details
+   - /arp-ios-xe-oper:arp-data
+   - /oc-if:interfaces/interface/state/counters
+   - /interfaces-ios-xe-oper:interfaces/interface
+   - /if:interfaces-state
+   - /bgp-ios-xe-oper:bgp-state-data

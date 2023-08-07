@@ -1,0 +1,33 @@
+interfaces:
+ - name: GigabitEthernet0/0
+   ip_address: 10.10.1.1/24
+ -  name: Lo0
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.101.1/24
+ -  name: Lo1
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.102.1/24
+ -  name: Lo2
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.103.1/24
+ -  name: Lo3
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.104.1/24
+ -  name: Lo4
+    desc: Loopback
+    enabled: yes
+    ip_address: 192.168.105.1/24
+
+bgp:
+  as_num: 65001
+  router_id: 192.168.100.21
+  neighbors:
+   - as: 64001
+     ip: 10.10.1.254
+  networks:
+    - prefix: 192.168.0.0
+      masklen: 16

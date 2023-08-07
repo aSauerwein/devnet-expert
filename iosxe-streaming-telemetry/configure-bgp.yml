@@ -1,0 +1,29 @@
+---
+# bgp must be configured before, otherwise we hit this bug
+# https://github.com/ansible/ansible/issues/57666
+- name: enable bgp
+  ios_config:
+    lines:
+    - "router bgp {{bgp.as_num}}"
+- name: configure global bgp as
+  ios_bgp:
+    config:
+      bgp_as: "{{bgp.as_num}}"
+      router_id: "{{bgp.router_id}}"
+      log_neighbor_changes: True
+- name: configure bgp neighbors
+  ios_bgp:
+    config:
+      bgp_as: "{{bgp.as_num}}"
+      neighbors:
+        - neighbor: "{{item.ip}}"
+          remote_as: "{{item.as}}"
+  loop: "{{ bgp.neighbors | list }}"
+- name: configure bgp networks
+  ios_bgp:
+    config:
+      bgp_as: "{{bgp.as_num}}"
+      networks:
+        - prefix: "{{item.prefix}}"
+          masklen: "{{item.masklen}}"
+  loop: "{{ bgp.networks | list }}"
