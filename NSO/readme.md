@@ -7,3 +7,13 @@
 2.10.d	Monitor service status by reviewing the NCS Python VM log file
 # devnet learning labs
 https://developer.cisco.com/learning/tracks/get_started_with_nso/nso/
+
+
+
+## ACL-Service
+Hank Preston shows in BRKCRT-2050 a few examples from Devnet Expert Exam.
+On slide 65 there is an example NSO Service called `acl-service`
+https://www.ciscolive.com/on-demand/on-demand-details.html?#/session/1670019628164001nq9F
+the ncs package in `acl-service` directory exaclty matches the service described on slide 65
+
+Note: yes, python is not needed in this example, but the blueprint explicitely mentions "python-and-template"
