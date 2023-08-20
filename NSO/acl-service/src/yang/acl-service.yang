@@ -24,13 +24,17 @@ module acl-service {
   list acccess-list {
     description "This is an RFS skeleton service";
 
+
     key name;
     leaf name {
       tailf:info "Unique service id";
       tailf:cli-allow-range;
       type string;
     }
-    
+
+    uses ncs:service-data;
+    ncs:servicepoint "acl-service-servicepoint";
+
     leaf-list device {
       type leafref {
         path "/ncs:devices/ncs:device/ncs:name";
@@ -48,7 +52,9 @@ module acl-service {
     list rule {
       key name;
       leaf name {
-        type string;
+        type string {
+          pattern [\S]*;
+        }
       }
       leaf description {
         type string;
@@ -63,13 +69,17 @@ module acl-service {
       leaf protocol {
         mandatory true;
         type enumeration {
-          enum TCP;
-          enum UDP;
+          enum tcp;
+          enum udp;
         }
       }
       container source {
         leaf address {
-          type inet:ip-address;
+          type union {
+            type inet:ip-address;
+            type inet:ip-prefix;
+          }
+          
           mandatory true;
         }
         leaf port {
@@ -78,11 +88,16 @@ module acl-service {
       }
       container destination {
         leaf address {
-          type inet:ip-address;
+          type union {
+            type inet:ip-address;
+            type inet:ip-prefix;
+          }
           mandatory true;
         }
         leaf port {
-          type uint16;
+          type uint16 {
+            range "1..1024";
+          }
           mandatory true;
         }
       }

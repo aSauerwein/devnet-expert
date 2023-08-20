@@ -14,6 +14,18 @@
             to set something on the device e.g.:
             <ip-address-on-device>{$DUMMY}</ip-address-on-device>
         -->
+        <ip xmlns="urn:ios">
+          <access-list>
+            <extended>
+              <ext-named-acl>
+                <name>{/name}</name>
+                <ext-access-list-rule>
+                  <rule>{$rule_text}</rule>
+                </ext-access-list-rule>
+              </ext-named-acl>
+            </extended>
+            </access-list>
+        </ip>
       </config>
     </device>
   </devices>

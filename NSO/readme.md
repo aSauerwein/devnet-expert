@@ -16,4 +16,6 @@ On slide 65 there is an example NSO Service called `acl-service`
 https://www.ciscolive.com/on-demand/on-demand-details.html?#/session/1670019628164001nq9F
 the ncs package in `acl-service` directory exaclty matches the service described on slide 65
 
-Note: yes, python is not needed in this example, but the blueprint explicitely mentions "python-and-template"
+the acl is more complicated thath previously thought. On slide 81 we see that every rule in the list 'rule' gets 2 additional remarks, just in front of it. 
+
+one solution to that is to prepare the complete rule in python and execute the template more than once. 

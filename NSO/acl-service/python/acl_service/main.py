@@ -1,6 +1,7 @@
 # -*- mode: python; python-indent: 4 -*-
 import ncs
 from ncs.application import Service
+import ipaddress
 
 
 # ------------------------
@@ -15,9 +16,41 @@ class ServiceCallbacks(Service):
         self.log.info('Service create(service=', service._path, ')')
 
         vars = ncs.template.Variables()
-        vars.add('DUMMY', '127.0.0.1')
         template = ncs.template.Template(service)
-        template.apply('acl-service-template', vars)
+        index = 10
+        for rule in service.rule:
+            # source
+            try:
+                source = ipaddress.ip_address(rule.source.address)
+                source_text = f"host {source}"
+            except:
+                source = ipaddress.ip_network(rule.source.address)
+                source_wildcard_mask = ipaddress.ip_address(int(source.netmask)^(2**32-1))
+                source_text = f"{source.network_address} {source_wildcard_mask}"
+
+            #destination
+            try:
+                destination = ipaddress.ip_address(rule.destination.address)
+                destination_text = f"host {destination}"
+            except:
+                destination = ipaddress.ip_network(rule.destination.address)
+                destination_wildcard_mask = ipaddress.ip_address(int(destination.netmask)^(2**32-1))
+                destination_text = f"{destination.network_address} {destination_wildcard_mask}"
+
+            rule_text = f"{index} remark Rule {rule.name} in ACL Service {service.name}"
+            vars.add("rule_text", rule_text)
+            template.apply('acl-service-template', vars)
+            index += 1
+            if rule.description:
+                rule_text = f"{index} remark {rule.description}"
+                vars.add("rule_text", rule_text)
+                template.apply('acl-service-template', vars)
+                index += 1
+            rule_text = f"{index} {rule.action} {rule.protocol} {source_text} {destination_text} eq {rule.destination.port}"
+            vars.add("rule_text", rule_text)
+            template.apply('acl-service-template', vars)
+            index += 1
+
 
     # The pre_modification() and post_modification() callbacks are optional,
     # and are invoked outside FASTMAP. pre_modification() is invoked before
