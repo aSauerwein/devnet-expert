@@ -27,7 +27,11 @@ class ServiceCallbacks(Service):
                 source = ipaddress.ip_network(rule.source.address)
                 source_wildcard_mask = ipaddress.ip_address(int(source.netmask)^(2**32-1))
                 source_text = f"{source.network_address} {source_wildcard_mask}"
-
+            
+            if rule.source.port:
+                source_port_text = f" eq {rule.source.port}"
+            else:
+                source_port_text = ""
             #destination
             try:
                 destination = ipaddress.ip_address(rule.destination.address)
@@ -36,6 +40,11 @@ class ServiceCallbacks(Service):
                 destination = ipaddress.ip_network(rule.destination.address)
                 destination_wildcard_mask = ipaddress.ip_address(int(destination.netmask)^(2**32-1))
                 destination_text = f"{destination.network_address} {destination_wildcard_mask}"
+
+            if rule.log:
+                log_text = f" log"
+            else:
+                log_text = ""
 
             rule_text = f"{index} remark Rule {rule.name} in ACL Service {service.name}"
             vars.add("rule_text", rule_text)
@@ -46,7 +55,7 @@ class ServiceCallbacks(Service):
                 vars.add("rule_text", rule_text)
                 template.apply('acl-service-template', vars)
                 index += 1
-            rule_text = f"{index} {rule.action} {rule.protocol} {source_text} {destination_text} eq {rule.destination.port}"
+            rule_text = f"{index} {rule.action} {rule.protocol} {source_text}{source_port_text} {destination_text} eq {rule.destination.port}{log_text}"
             vars.add("rule_text", rule_text)
             template.apply('acl-service-template', vars)
             index += 1
