@@ -135,6 +135,15 @@ config:
             healthy: 1
             problem: 2
             critical: 3
+  inputs:
+    - cisco_telemetry_mdt:
+        transport: "grpc"
+        service_address: ":57500"
+        tls_cert: "/etc/telegraf/certs/tls.crt"
+        tls_key: "/etc/telegraf/certs/tls.key"
+    - cisco_telemetry_mdt:
+        transport: "grpc"
+        service_address: ":57600"
   outputs:
     - influxdb:
         urls:

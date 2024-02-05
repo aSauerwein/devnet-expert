@@ -6,8 +6,8 @@ helm:
   version: ^1.8.23
   valuesFiles: 
     - values.yaml
-  valuesFrom:
-  - secretKeyRef:
-      name: secret-values
-      namespace: telegraf
-      key: values.yaml
+  # valuesFrom:
+  # - secretKeyRef:
+  #     name: secret-values
+  #     namespace: telegraf
+  #     key: values.yaml
