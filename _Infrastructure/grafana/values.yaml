@@ -74,21 +74,6 @@ livenessProbe:
 ##
 # schedulerName: "default-scheduler"
 
-image:
-  repository: grafana/grafana
-  # Overrides the Grafana image tag whose default is the chart appVersion
-  tag: ""
-  sha: ""
-  pullPolicy: IfNotPresent
-
-  ## Optionally specify an array of imagePullSecrets.
-  ## Secrets must be manually created in the namespace.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  ## Can be templated.
-  ##
-  # pullSecrets:
-  #   - myRegistrKeySecretName
-
 testFramework:
   enabled: true
   image: "bats/bats"
