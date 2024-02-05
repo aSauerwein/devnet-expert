@@ -492,7 +492,17 @@ plugins: []
 ## Configure grafana datasources
 ## ref: http://docs.grafana.org/administration/provisioning/#datasources
 ##
-datasources: {}
+datasources:
+  - name: InfluxDB_v1
+    type: influxdb
+    access: proxy
+    user: grafana
+    url: http://influxdb.influxdb.svc.cluster.local:8086
+    jsonData:
+      dbName: telegraf
+      httpMode: GET
+    secureJsonData:
+      password: grafana
 #  datasources.yaml:
 #    apiVersion: 1
 #    datasources:
