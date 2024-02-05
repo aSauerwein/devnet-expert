@@ -3,7 +3,7 @@ helm:
   chart: grafana
   repo: https://grafana.github.io/helm-charts
   releaseName: grafana
-  version: 7.0.19
+  version: 6.15.0 #grafana 8.1
   valuesFiles:
     - values.yaml
   values:
