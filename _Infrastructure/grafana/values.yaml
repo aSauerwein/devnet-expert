@@ -503,9 +503,7 @@ datasources:
       access: proxy
       user: grafana
       url: http://influxdb.influxdb.svc.cluster.local:8086
-      jsonData:
-        dbName: telegraf
-        httpMode: GET
+      database: telegraf
       secureJsonData:
         password: grafana
 #  datasources.yaml:
