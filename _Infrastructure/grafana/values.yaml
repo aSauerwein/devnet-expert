@@ -185,7 +185,9 @@ ingress:
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   ingressClassName: nginx
   # Values can be templated
-  annotations: {}
+  annotations:
+    cert-manager.io/cluster-issuer: vault-issuer
+    cert-manager.io/common-name: grafana.k8s.ntslab.loc
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   labels: {}
@@ -212,10 +214,10 @@ ingress:
   #         name: use-annotation
 
 
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+   - secretName: grafana-tls
+     hosts:
+       - grafana.k8s.ntslab.loc
 
 resources: {}
 #  limits:
